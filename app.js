@@ -81,6 +81,29 @@ app.use(
 );
 app.use(flash());
 
+const scriptSrcUrls = [
+  "https://stackpath.bootstrapcdn.com/",
+  "https://cdnjs.cloudflare.com/",
+  "https://cdn.jsdelivr.net/",
+  "https://code.jquery.com/",
+];
+const styleSrcUrls = [
+  "https://stackpath.bootstrapcdn.com/",
+  "https://cdn.jsdelivr.net/",
+];
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [],
+      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+      workerSrc: ["'self'", "blob:"],
+      objectSrc: [],
+    },
+  })
+);
+
 app.use((req, res, next) => {
   if (req.session.user) {
     // console.log(req.session.user);
