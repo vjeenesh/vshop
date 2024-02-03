@@ -65,7 +65,7 @@ app.use(morgan("combined", { stream: accessLogStream }));
 
 const scriptSrcUrls = [
   "https://stackpath.bootstrapcdn.com/",
-  "https://js.stripe.com/v3/",
+  "https://js.stripe.com/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net/",
   "https://code.jquery.com/",
@@ -84,6 +84,7 @@ app.use(
         "script-src-attr": ["'unsafe-inline'", "'self'"],
         "style-src": ["'self'", "'unsafe-inline'", ...styleSrcUrls],
         "worker-src": ["'self'", "blob:"],
+        "frame-src": ["'self'", "https://js.stripe.com/"]
       },
     },
   })
