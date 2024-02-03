@@ -63,7 +63,30 @@ const accessLogStream = fs.createWriteStream(
 );
 app.use(morgan("combined", { stream: accessLogStream }));
 
-app.use(helmet());
+const scriptSrcUrls = [
+  "https://stackpath.bootstrapcdn.com/",
+  "https://cdnjs.cloudflare.com/",
+  "https://cdn.jsdelivr.net/",
+  "https://code.jquery.com/",
+];
+const styleSrcUrls = [
+  "https://stackpath.bootstrapcdn.com/",
+  "https://cdn.jsdelivr.net/",
+];
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "script-src": ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+        "script-src-attr": ["'unsafe-inline'", "'self'"],
+        "style-src": ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+        "worker-src": ["'self'", "blob:"],
+      },
+    },
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
@@ -80,29 +103,6 @@ app.use(
   })
 );
 app.use(flash());
-
-const scriptSrcUrls = [
-  "https://stackpath.bootstrapcdn.com/",
-  "https://cdnjs.cloudflare.com/",
-  "https://cdn.jsdelivr.net/",
-  "https://code.jquery.com/",
-];
-const styleSrcUrls = [
-  "https://stackpath.bootstrapcdn.com/",
-  "https://cdn.jsdelivr.net/",
-];
-
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: [],
-      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-      workerSrc: ["'self'", "blob:"],
-      objectSrc: [],
-    },
-  })
-);
 
 app.use((req, res, next) => {
   if (req.session.user) {
