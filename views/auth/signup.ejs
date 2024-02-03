@@ -1,0 +1,51 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container mt-2 ">
+            <% if(flashMessage) { %>
+                <div class="alert alert-danger text-center" role="alert">
+                    <%= flashMessage %>
+                  </div>
+            <% } %>
+            <div class="row justify-content-center">
+            <form class="col-md-6" action="/signup" method="post">        
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" required name="username" id="username">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" required name="email" id="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group input-group-sm">
+                        <input type="password" class="form-control" required name="password" id="password">
+                        <div class="input-group-text">
+                            <button class="btn btn-sm border-0" type="button" id="peekPassword" onclick="togglePassword()">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <div class="input-group input-group-sm">
+                        <input type="password" class="form-control" required name="confirmPassword" id="confirmPassword">
+                        <div class="input-group-text">
+                            <button class="btn btn-sm border-0" type="button" id="peekConfirmPassword" onclick="toggleConfirmPassword()">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-outline-primary" type="submit">Sign Up</button>
+            </form>
+        </div>
+        </div>
+        
+    </main>
+    <script src="./js/passwordPeek.js"></script>
+<%- include('../includes/end.ejs') %>

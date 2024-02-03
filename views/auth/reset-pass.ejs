@@ -1,0 +1,25 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container mt-2 ">
+            <% if(flashMessage) { %>
+                <div class="alert alert-danger text-center" role="alert">
+                    <%= flashMessage %>
+                  </div>
+            <% } %>
+            <div class="row justify-content-center">
+                <form class="col-md-6" action="/reset" method="post">
+                    <div class="mb-3">
+                        <label for="email" class="form-label is-invalid">Email</label>
+                        <input type="email" required class="form-control" name="email" id="email">
+                        
+                    </div>
+                    <button class="btn btn-outline-primary" type="submit">Reset Password</button>
+                </form>
+        </div>
+        </div>
+        
+    </main>
+<%- include('../includes/end.ejs') %></body>

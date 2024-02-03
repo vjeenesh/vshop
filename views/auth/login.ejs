@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container mt-2 ">
+            <% if(flashMessage) { %>
+                <div class="alert alert-danger text-center" role="alert">
+                    <%= flashMessage %>
+                  </div>
+            <% } %>
+            <div class="row justify-content-center">
+            <form class="col-md-6" action="/login" method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" required class="form-control" name="email" id="email" placeholder="Enter email">
+                </div>
+                <div class="">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group input-group-sm">
+                        <input type="password" required class="form-control" name="password" id="password" placeholder="Enter password">
+                        <div class="input-group-text">
+                            <button class="btn btn-sm border-0" type="button" id="peekPassword" onclick="togglePassword()">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p><a class="link-primary link-opacity-85 link-underline-opacity-0" href="/reset">Forgot Password?</a></p>
+
+                <button class="btn btn-outline-primary" type="submit">Login</button>
+            </form>
+        </div>
+        </div>
+    </main>
+    <script src="./js/passwordPeek.js"></script>
+<%- include('../includes/end.ejs') %>

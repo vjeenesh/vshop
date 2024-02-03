@@ -1,0 +1,7 @@
+::1 - - [02/Feb/2024:17:17:21 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+::1 - - [02/Feb/2024:17:17:21 +0000] "GET /images/1706548244644-IMG_20230401_144825.jpg HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+::1 - - [02/Feb/2024:17:17:24 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+::1 - - [02/Feb/2024:17:17:24 +0000] "GET /images/1706548244644-IMG_20230401_144825.jpg HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+::1 - - [03/Feb/2024:06:41:32 +0000] "GET / HTTP/1.1" 200 3685 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+::1 - - [03/Feb/2024:06:41:32 +0000] "GET /images/1706548244644-IMG_20230401_144825.jpg HTTP/1.1" 200 1169305 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+::1 - - [03/Feb/2024:06:41:32 +0000] "GET /favicon.ico HTTP/1.1" 404 2835 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"

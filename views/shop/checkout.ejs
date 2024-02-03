@@ -1,0 +1,136 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body style="background-color: #eee;">
+    <%- include('../includes/navigation.ejs') %>
+    <main >
+        <section class="h-100 h-custom">
+            <div class="container-fluid py-5 h-100">
+                <% if (products.length > 0) { %>
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body p-4">
+                      <div class="row justify-content-center align-items-center h-100">
+                        <div class="col-lg-7">
+                          <h5 class="mb-3">
+                            <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(-.125rem, 0 , 0);" href="/cart">
+                                <i class="bi bi-arrow-left"></i>
+                                Cart
+                              </a>
+                          </h5>
+                          <hr>
+          
+                          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+                            <p>Shopping cart</p>
+                          </div>
+                            <% for(const product of products) { %>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row align-items-center">
+                                        <div class="ms-3">
+                                            <h5><%= product.productData.productTitle %></h5>
+                                            <p class="small mb-0"><%= product.productData.productDescription %></p>
+                                        </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center">
+                                        <div style="width: 80px;">
+                                            <h6 class="fw-normal mb-0"><%= product.quantity %>x<%= product.productData.productPrice %></h6>
+                                        </div>
+                                        <div style="width: 80px;">
+                                            <h5 class="mb-0">$<%= product.productData.productPrice * product.quantity %></h5>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                            <div class="card mb-3 bg-secondary-subtle">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mb-0">Total</h4>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <div style="width: 80px;">
+                                                <h5 class="mb-0">$<%= products.reduce(
+                                                    (total, { productData, quantity }) =>
+                                                      total + productData.productPrice * quantity,
+                                                    0
+                                                  ); %></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <!-- <input type="hidden" name="productId" value="<%=  %>"> -->
+                                <form class="row g-3" id="shippingForm">
+                                    <div class="col-12">
+                                      <label for="shipping_street" class="form-label">Address</label>
+                                      <input disabled type="text" class="form-control" id="shipping_street" name="shipping_street" value="<%= shippingAddress.street_address %>">
+                                    </div>
+                                    <div class="col-md-4">
+                                      <label for="shipping_city" class="form-label">City</label>
+                                      <input disabled type="text" class="form-control" id="shipping_city" name="shipping_city" value="<%= shippingAddress.city %>">
+                                    </div>
+                                    <div class="col-md-4">
+                                      <label for="shipping_state" class="form-label">State</label>
+                                      <input disabled type="text" class="form-control" id="shipping_state" name="shipping_state" value="<%= shippingAddress.state%>">
+                                    </div>
+                                    <div class="col-md-2">
+                                      <label for="shipping_country" class="form-label">Country</label>
+                                      <input disabled type="text" class="form-control" id="shipping_country" name="shipping_country" value="<%= shippingAddress.country %>">
+                                    </div>
+                                    <div class="col-md-2">
+                                      <label for="shipping_zipcode" class="form-label">Zip</label>
+                                      <input disabled type="number" class="form-control" id="shipping_zipcode" name="shipping_zipcode" value="<%= shippingAddress.zipcode%>">
+                                    </div>
+                                    <div class="w-100">
+                                        <button type="submit" class="btn btn-lg btn-outline-primary w-100" id="checkoutBtn">Order</a>
+                                            <script src="https://js.stripe.com/v3/"></script>
+                                            <script>
+                                                var stripe = Stripe('pk_test_51OVUcaSGhqOlfLLyucksYAZR9efcqqHap03qJWWTmgKLvDzFYM4i1BNDySjeAUBD3mJXBwYtUdHI2v0qqX8KfckU005jiCSEuf');
+                                                var submitBtn = document.getElementById('shippingForm');
+                                                submitBtn.addEventListener('submit', (event) => {
+                                                    event.preventDefault();
+                                                    var shipping_street = document.getElementById('shipping_street').value;
+                                                    var city = document.getElementById('shipping_street').value;
+                                                    var state = document.getElementById('shipping_city').value;
+                                                    var country = document.getElementById('shipping_state').value;
+                                                    var zipcode = document.getElementById('shipping_zipcode').value;
+                                                    var shipping_details = {
+                                                      shipping_street,  city, state, country, zipcode 
+                                                    }
+                                                    stripe.redirectToCheckout({
+                                                      sessionId: '<%= stripeSessionId %>'
+                                                    })
+                                                })
+                                            </script>
+                                      </div>    
+                                  </form>
+                                
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <% } else { %>
+            <div class="container-fluid text-center">
+                <h1>Add products to cart to proceed!</h1>
+            <h5 class="mb-3">
+                <a class="icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(-.125rem, 0 , 0);" href="/">
+                    <i class="bi bi-arrow-left"></i>
+                    Continue Shopping
+                  </a>
+              </h5>
+            </div>
+            
+        <% } %>
+    </main>
+    <%- include('../includes/end.ejs') %>

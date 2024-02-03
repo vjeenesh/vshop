@@ -1,0 +1,42 @@
+{
+  "name": "node-first-app",
+  "version": "1.0.0",
+  "description": "First app with node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "start-server": "node app.js"
+  },
+  "author": "Jinesh Van",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.1",
+    "cloudinary": "^2.0.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^2.2.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "mongodb": "^6.2.0",
+    "mongoose": "^8.0.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "mysql2": "^3.6.2",
+    "nodemailer": "^6.9.7",
+    "pdfkit": "^0.14.0",
+    "resend": "^2.0.0",
+    "sequelize": "^6.33.0",
+    "stripe": "^14.11.0"
+  }
+}

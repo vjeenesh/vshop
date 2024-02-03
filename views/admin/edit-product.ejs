@@ -1,0 +1,40 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container mt-2 ">
+            <div class="row justify-content-center">
+                <% if(flashMessage) { %>
+                    <div class="alert alert-danger text-center" role="alert">
+                        <%= flashMessage %>
+                      </div>
+                <% } %>
+            <form class="col-md-6" action="/admin/<% if(isEditMode) { %>edit-product<% } else {%>add-product<% } %>" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" value="<% if(isEditMode) { %><%= product.title %><% } %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" name="image" id="image" value="/<% if(isEditMode) { %><%= product.imageUrl %><% } %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea type="textarea" class="form-control" name="description" id="description" rows="3"><% if(isEditMode) { %><%= product.description %><% } %></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" name="price" id="price" step="0.01" value="<% if(isEditMode) { %><%= product.price %><% } %>" required>
+                </div>
+                <% if(isEditMode) { %>
+                    <input type="hidden" value="<%= product._id %>" name="productId">
+                <% } %>
+                <button class="btn btn-outline-primary" type="submit"><% if(isEditMode) { %>Edit Product<% } else {%>Add Product<% } %></button>
+            </form>
+        </div>
+        </div>
+        
+    </main>
+<%- include('../includes/end.ejs') %>

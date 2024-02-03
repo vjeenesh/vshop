@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="/<%= product.imageUrl %>" class="img-fluid rounded" alt="<%= product.title %>">
+                </div>
+                <div class="col-md-6">
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                         <h1><%= product.title %></h1>
+                       </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                         <p class="description">
+                          <%= product.description %>
+                         </p>
+                        </div>
+                       </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                         <h2>$<%= product.price %></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <% if(isLoggedIn) { %>
+                                <%- include('../includes/add-to-cart.ejs', {productId: product._id }) %>
+                              <% } %>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <%- include('../includes/end.ejs') %>
