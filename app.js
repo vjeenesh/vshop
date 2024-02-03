@@ -65,6 +65,7 @@ app.use(morgan("combined", { stream: accessLogStream }));
 
 const scriptSrcUrls = [
   "https://stackpath.bootstrapcdn.com/",
+  "https://js.stripe.com/v3/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net/",
   "https://code.jquery.com/",
