@@ -1,23 +1,25 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-        user: "noreply.vshop@gmail.com",
-        pass: "zfnz lzfs xmnh kfjz"
-    }
-})
+  service: "gmail",
+  host: "smtp.gmail.com",
+  port: process.env.MAIL_PORT,
+  secure: false,
+  auth: {
+    user: process.env.MAIL_ID,
+    pass: process.env.MAIL_PASS,
+  },
+});
 
 const SENDEMAIL = async (mailDetails, cb) => {
-    try {
-        const info = await transporter.sendMail({
-            from: "noreply.vshop@gmail.com",
-            to: mailDetails.toEmail,
-            subject: mailDetails.subject ? mailDetails.subject : "Welcome to VShop!",
-            html: mailDetails.html ? mailDetails.html : `<!DOCTYPE html>
+  try {
+    const info = await transporter.sendMail({
+      from: "noreply.vshop@gmail.com",
+      to: mailDetails.toEmail,
+      subject: mailDetails.subject ? mailDetails.subject : "Welcome to VShop!",
+      html: mailDetails.html
+        ? mailDetails.html
+        : `<!DOCTYPE html>
                 <html lang="en">
                 <head>
                 <meta charset="UTF-8">
@@ -48,12 +50,12 @@ const SENDEMAIL = async (mailDetails, cb) => {
                     </tr>
                 </table>
                 </body>
-                </html>`
-        });
-        cb(info);   
-    } catch (error) {
-        console.log(error);
-    }
+                </html>`,
+    });
+    cb(info);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = SENDEMAIL;

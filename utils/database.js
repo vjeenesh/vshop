@@ -15,7 +15,7 @@
 
 // const mongoConnect = (callback) => {
 //     MongoClient
-//         .connect('mongodb+srv://shop_dev_admin:lfc9XfMx7adbW8be@cluster0.wx9tr.mongodb.net/shop?retryWrites=true&w=majority')
+//         .connect(process.env.DB_URI)
 //         .then(client => {
 //             console.log('Connected to remote DB!');
 //             _db = client.db();
@@ -36,4 +36,3 @@
 
 // exports.mongoConnect = mongoConnect;
 // exports.getDb = getDb;
-
